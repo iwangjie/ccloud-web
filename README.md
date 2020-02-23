@@ -16,7 +16,7 @@ yarn build
 ```
 
 ### 目录结构
-
+```
 ├─assets // 资源
 ├─components // 组件
 │  └─Menu //菜单
@@ -25,3 +25,4 @@ yarn build
 ├─store // vuex配置
 └─views // 页面
     └─layout // 布局页
+```
