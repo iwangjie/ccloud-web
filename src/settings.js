@@ -1,5 +1,3 @@
 module.exports = {
-
-  title: 'C-Cloud'
-
+  title: 'C Cloud'
 }
