@@ -15,7 +15,7 @@ yarn serve
 yarn build
 ```
 
-### 目录结构
+### src文件下目录结构
 ```
 ├─assets // 资源
 ├─components // 组件

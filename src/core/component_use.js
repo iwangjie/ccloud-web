@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description: 组件加载配置文件
  * @Author: kcz
  * @Date: 2020-02-23 21:06:45
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-23 21:21:19
+ * @LastEditTime: 2020-02-24 19:57:46
  */
 
 /* eslint-disable */

@@ -1,9 +1,9 @@
 <!--
- * @Description:
+ * @Description: 菜单组件
  * @Author: kcz
  * @Date: 2020-02-23 21:15:27
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-23 21:15:35
+ * @LastEditTime: 2020-02-24 19:57:17
  -->
 <template>
   <div style="width: 256px">
@@ -17,44 +17,44 @@
       theme="dark"
       :inlineCollapsed="collapsed"
     >
-      <a-menu-item key="1">
-        <a-icon type="pie-chart" />
-        <span>Option 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <a-icon type="desktop" />
-        <span>Option 2</span>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <a-icon type="inbox" />
-        <span>Option 3</span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
-        <a-menu-item key="5">Option 5</a-menu-item>
-        <a-menu-item key="6">Option 6</a-menu-item>
-        <a-menu-item key="7">Option 7</a-menu-item>
-        <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <span slot="title"><a-icon type="appstore" /><span>Navigation Two</span></span>
-        <a-menu-item key="9">Option 9</a-menu-item>
-        <a-menu-item key="10">Option 10</a-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
-          <a-menu-item key="11">Option 11</a-menu-item>
-          <a-menu-item key="12">Option 12</a-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
+          <template v-for="item in list">
+        <a-menu-item v-if="!item.children" :key="item.key">
+          <a-icon type="pie-chart" />
+          <span>{{item.title}}</span>
+        </a-menu-item>
+        <cSubMenu v-else :menu-info="item" :key="item.key" />
+      </template>
     </a-menu>
   </div>
 </template>
 
 <script>
+import cSubMenu from './module/cSubMenu'
 export default {
   data () {
     return {
-      collapsed: false
+      collapsed: false,
+      list: [
+        {
+          key: '1',
+          title: 'Option 1'
+        },
+        {
+          key: '2',
+          title: 'Navigation 2',
+          children: [
+            {
+              key: '2.1',
+              title: 'Navigation 3',
+              children: [{ key: '2.1.1', title: 'Option 2.1.1' }]
+            }
+          ]
+        }
+      ]
     }
+  },
+  components: {
+    cSubMenu
   },
   methods: {
     toggleCollapsed () {
