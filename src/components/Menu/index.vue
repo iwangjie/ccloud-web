@@ -3,13 +3,17 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:15:27
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-24 20:20:22
+ * @LastEditTime: 2020-02-24 21:04:40
  -->
 <template>
-  <div class="menu-main" :class="collapsed ? 'collapsed' : ''">
-    <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
+  <div class="menu-main" :class="{'collapsed':collapsed}">
+    <!-- <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
       <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
-    </a-button>
+    </a-button> -->
+    <div class="logo">
+      <img :src="logo">
+      <span v-show="!collapsed">C-CLOUD</span>
+    </div>
     <a-menu
       :defaultSelectedKeys="['1']"
       :defaultOpenKeys="['sub1']"
@@ -30,23 +34,26 @@
 
 <script>
 import cSubMenu from './module/cSubMenu'
+import { mapGetters } from 'vuex'
+import logo from '@/assets/logo.png'
 export default {
   data () {
     return {
-      collapsed: false,
+      // collapsed: false,
+      logo,
       list: [
         {
           key: '1',
-          title: 'Option 1'
+          title: '菜单1'
         },
         {
           key: '2',
-          title: 'Navigation 2',
+          title: '菜单2',
           children: [
             {
               key: '2.1',
-              title: 'Navigation 3',
-              children: [{ key: '2.1.1', title: 'Option 2.1.1' }]
+              title: '菜单2.1',
+              children: [{ key: '2.1.1', title: '菜单2.1.1' }]
             }
           ]
         }
@@ -56,10 +63,14 @@ export default {
   components: {
     cSubMenu
   },
+  computed: {
+    ...mapGetters(['collapsed'])
+  },
   methods: {
-    toggleCollapsed () {
-      this.collapsed = !this.collapsed
-    }
+
+  },
+  mounted () {
+    console.log(this.collapsed)
   }
 }
 </script>
