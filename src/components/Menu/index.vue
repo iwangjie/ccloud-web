@@ -3,10 +3,10 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:15:27
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-24 19:57:17
+ * @LastEditTime: 2020-02-24 20:20:22
  -->
 <template>
-  <div style="width: 256px">
+  <div class="menu-main" :class="collapsed ? 'collapsed' : ''">
     <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
       <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
     </a-button>

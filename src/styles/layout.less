@@ -1,0 +1,21 @@
+// 布局主体样式
+.layout-main{
+ display: flex;
+ .layout-right{
+   flex: 1;
+   background: #ef89fe;
+ }
+}
+
+// 菜单主体样式
+.menu-main{
+  width: 256px;
+  height: 100vh;
+  background: #001529;
+  transition: width 0.2s;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &.collapsed{
+  width: 80px;
+  }
+}

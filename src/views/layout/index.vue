@@ -3,19 +3,22 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-24 19:57:25
+ * @LastEditTime: 2020-02-24 20:24:25
  -->
 <template>
-  <div>
-    <kmenu />
+  <div class="layout-main">
+    <cMenu class="c-layout-left" />
+    <div class="layout-right">
+      234
+    </div>
   </div>
 </template>
 <script>
-import kmenu from '@/components/Menu/index.vue'
-// console.log(kmenu)
+import cMenu from '@/components/Menu/index.vue'
+// console.log(cMenu)
 export default {
   components: {
-    kmenu
+    cMenu
   }
 }
 </script>
