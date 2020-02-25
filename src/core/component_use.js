@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:06:45
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-24 19:57:46
+ * @LastEditTime: 2020-02-25 20:53:03
  */
 
 /* eslint-disable */
@@ -21,6 +21,7 @@ import {
   Button,
   Form,
   Menu,
+  Dropdown,
   Icon,
   Row,
   Col,
@@ -35,6 +36,7 @@ Vue.use(LocaleProvider)
 Vue.use(Layout)
 Vue.use(Input)
 Vue.use(Button)
+Vue.use(Dropdown)
 Vue.use(Form)
 Vue.use(Menu)
 Vue.use(Icon)
