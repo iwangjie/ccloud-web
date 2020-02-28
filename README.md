@@ -20,7 +20,7 @@ yarn build
 ├─assets // 资源
 ├─components // 组件
 │  └─Menu //菜单
-├─core // 组件懒加载配置
+├─core // 核心及组件按需加载配置
 ├─router // 路由配置
 ├─store // vuex配置
 └─views // 页面

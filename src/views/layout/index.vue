@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-25 21:03:24
+ * @LastEditTime: 2020-02-28 20:30:45
  -->
 <template>
   <div class="layout-main">
@@ -38,7 +38,9 @@
         </div>
         <!-- 头部右侧装饰 end -->
       </header>
-      <div class="layout-content">234</div>
+      <div class="layout-content">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>

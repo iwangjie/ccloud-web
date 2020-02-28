@@ -3,21 +3,25 @@
  display: flex;
  .layout-right{
    flex: 1;
-   background: #ef89fe;
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+   overflow-y: auto;
    .layout-header{
      background: #fff;
-     height: 48px;
+     height: 50px;
      display: flex;
      justify-content: space-between;
+     box-shadow: 0 0 3px #aaa;
      .toggle-collapsed-btn{
        font-size: 22px;
-       width: 48px;
+       width: 50px;
        text-align: center;
-       line-height: 48px;
+       line-height: 50px;
        cursor: pointer;
      }
      .decorate{
-       padding: 4px 15px;
+       padding: 5px 15px;
        .avatar{
          >div{
           width: 40px;
@@ -32,6 +36,10 @@
          
        }
      }
+   }
+   .layout-content{
+     flex: 1;
+     background:#f0f2f5;
    }
  }
 }

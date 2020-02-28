@@ -1,9 +1,9 @@
 /*
- * @Description: 组件加载配置文件
+ * @Description: 组件按需加载配置文件
  * @Author: kcz
  * @Date: 2020-02-23 21:06:45
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-25 20:53:03
+ * @LastEditTime: 2020-02-28 20:14:41
  */
 
 /* eslint-disable */
@@ -29,7 +29,6 @@ import {
   message,
   notification
 } from 'ant-design-vue'
-// import VueCropper from 'vue-cropper'
 
 
 Vue.use(LocaleProvider)
@@ -44,7 +43,6 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Modal)
 
-// Vue.use(VueCropper)
 Vue.use(notification)
 
 
