@@ -25,4 +25,4 @@ yarn build
 ├─store // vuex配置
 └─views // 页面
     └─layout // 布局页
-```
+``` 
