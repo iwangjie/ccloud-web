@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:06:45
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 09:33:00
+ * @LastEditTime: 2020-02-29 11:51:30
  */
 
 /* eslint-disable */
@@ -28,12 +28,14 @@ import {
   Card,
   Breadcrumb,
   Modal,
+  Tabs,
   message,
   notification
 } from 'ant-design-vue'
 
 
 Vue.use(LocaleProvider)
+Vue.use(Tabs)
 Vue.use(Breadcrumb)
 Vue.use(Card)
 Vue.use(Layout)
