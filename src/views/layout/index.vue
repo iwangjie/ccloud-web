@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 09:31:52
+ * @LastEditTime: 2020-02-29 09:42:52
  -->
 <template>
   <div class="layout-main">
@@ -20,8 +20,8 @@
           <a-dropdown :trigger="['click']">
             <a class="avatar" href="#">
               <div>
-              <img src="http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg" alt />
-              <!-- <a-icon type="down" /> -->
+                <img src="http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg" alt />
+                <!-- <a-icon type="down" /> -->
               </div>
             </a>
             <a-menu slot="overlay">
@@ -47,18 +47,26 @@
           <router-view></router-view>
         </div>
       </div>
+
+      <!-- 页脚 start -->
+      <div class="layout-footer">
+        <cFooter />
+      </div>
+      <!-- 页脚 end -->
     </div>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 import cMenu from '@/components/Menu/index.vue'
+import cFooter from '@/components/Footer/index.vue'
 import cBreadcrumb from './module/breadcrumb'
 // console.log(cMenu)
 export default {
   components: {
     cMenu,
-    cBreadcrumb
+    cBreadcrumb,
+    cFooter
   },
   computed: {
     ...mapGetters(['collapsed'])
