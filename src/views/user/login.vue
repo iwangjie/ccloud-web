@@ -101,16 +101,24 @@ export default {
         if (!err) {
           console.log('Received values of form: ', values)
         }
-        this.$axios({
-          method: 'post',
-          url: '/login',
-          data: this.qs.stringify({ // 这里是发送给后台的数据
-            values
+        // this.$axios({
+        //   method: 'post',
+        //   url: '/login',
+        //   data: this.qs.stringify({ // 这里是发送给后台的数据
+        //     values
+        //   })
+        // }).then((response) => { // 这里使用了ES6的语法
+        //   console.log(response) // 请求成功返回的数据
+        // }).catch((error) => {
+        //   console.log(error) // 请求失败返回的数据
+        // })
+
+        this.$api.userMainLogin(values).then((response) => {
+          this.$notification.success({
+            message: '成功',
+            description: '登录成功'
           })
-        }).then((response) => { // 这里使用了ES6的语法
           console.log(response) // 请求成功返回的数据
-        }).catch((error) => {
-          console.log(error) // 请求失败返回的数据
         })
       })
       return false
