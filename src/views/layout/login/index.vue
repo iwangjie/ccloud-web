@@ -15,12 +15,15 @@
         <a-form :form="form" @submit="handleSubmit">
           <a-form-item>
             <label>用户名：</label>
-            <a-input onautocomplete="false" v-decorator="['username', { rules: [{ required: true, message: '请填写用户名' }] }]" name="username"/>
+            <a-input onautocomplete="false"
+                     v-decorator="['username', { rules: [{ required: true, message: '请填写用户名' }] }]" name="username"/>
 
           </a-form-item>
           <a-form-item>
             <label>密码：</label>
-            <a-input  onautocomplete="false" v-decorator="['password', { rules: [{ required: true, message: '请填写密码' }] }]" name="password" type="password"/>
+            <a-input onautocomplete="false"
+                     v-decorator="['password', { rules: [{ required: true, message: '请填写密码' }] }]" name="password"
+                     type="password"/>
           </a-form-item>
           <div>
             <a href="/resetPassword" style="">忘记了密码？</a>
@@ -98,6 +101,17 @@ export default {
         if (!err) {
           console.log('Received values of form: ', values)
         }
+        this.$axios({
+          method: 'post',
+          url: '/login',
+          data: this.qs.stringify({ // 这里是发送给后台的数据
+            values
+          })
+        }).then((response) => { // 这里使用了ES6的语法
+          console.log(response) // 请求成功返回的数据
+        }).catch((error) => {
+          console.log(error) // 请求失败返回的数据
+        })
       })
       return false
     }
