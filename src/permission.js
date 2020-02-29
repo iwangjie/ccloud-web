@@ -6,14 +6,14 @@
  * @LastEditTime: 2020-02-29 20:23:16
  */
 import router from './router'
-import { asyncRouterMap } from './router/router.config'
-import store from './store'
+// import { asyncRouterMap } from './router/router.config'
+// import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 
 // 异步路由暂时写在这里吧,等有了登录，在登录在加载
-router.addRoutes(asyncRouterMap)
-store.dispatch('GenerateRoutes')
+// router.addRoutes(asyncRouterMap)
+// store.dispatch('GenerateRoutes')
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
