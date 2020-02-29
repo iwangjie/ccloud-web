@@ -3,19 +3,22 @@
  * @Author: kcz
  * @Date: 2020-02-29 13:35:07
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 13:50:44
+ * @LastEditTime: 2020-02-29 21:06:54
  -->
 <template>
   <a-tabs hideAdd v-model="activeKey" type="editable-card">
-    <a-tab-pane tab="pane.title" :key="22"></a-tab-pane>
+    <a-tab-pane v-for="item in tabs" :key="item.name" :tab="item.meta.title"></a-tab-pane>
   </a-tabs>
 </template>
 <script>
 export default {
   name: 'cTabs',
-  data () {
-    return {
-      activeKey: 22
+  computed: {
+    tabs () {
+      return this.$store.getters.tabs
+    },
+    activeKey () {
+      return this.$route.name
     }
   }
 }

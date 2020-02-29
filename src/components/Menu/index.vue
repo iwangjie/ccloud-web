@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:15:27
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 20:42:39
+ * @LastEditTime: 2020-02-29 20:58:11
  -->
 <template>
   <div class="menu-main" :class="{'collapsed':collapsed}">
@@ -66,6 +66,9 @@ export default {
       // const path = '/' + route.keyPath.reverse().join('/')
       this.$router.push({
         name: route.key
+      }).then(res => {
+      //  当路由跳转成功时
+        this.$store.dispatch('addTab', res)
       })
     }
   },
