@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-29 16:14:53
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 16:20:29
+ * @LastEditTime: 2020-02-29 16:54:41
  */
 
 import Layout from '../views/layout/index.vue'
@@ -40,7 +40,16 @@ export const asyncRouterMap = [
 // 默认加载路由配置
 export const constantRouterMap = [
   {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/user/login')
+  },
+  {
     path: '/404',
     component: () => import('@/views/exception/404')
+  },
+  {
+    path: '*',
+    redirect: '/login'
   }
 ]
