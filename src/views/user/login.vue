@@ -15,15 +15,17 @@
         <a-form :form="form" @submit="handleSubmit">
           <a-form-item>
             <label>用户名：</label>
-            <a-input onautocomplete="false"
-                     v-decorator="['username', { rules: [{ required: true, message: '请填写用户名' }] }]" name="username"/>
+            <a-input
+             v-decorator="['username', { rules: [{ required: true, message: '请填写用户名' }] }]"
+              name="username"/>
 
           </a-form-item>
           <a-form-item>
             <label>密码：</label>
-            <a-input onautocomplete="false"
-                     v-decorator="['password', { rules: [{ required: true, message: '请填写密码' }] }]" name="password"
-                     type="password"/>
+            <a-input
+              v-decorator="['password', { rules: [{ required: true, message: '请填写密码' }] }]"
+              name="password"
+              type="password"/>
           </a-form-item>
           <div>
             <a href="/resetPassword" style="">忘记了密码？</a>
@@ -35,11 +37,13 @@
           </div>
 
           <div style="display: flex;flex-direction: row-reverse;margin-top: 50px">
-            <a-button type="primary" html-type="submit">登录</a-button>
+            <a-button style="width:50px;" type="primary" html-type="submit">登录</a-button>
             <a style="flex-grow: 1;height: 36px;width: 88px" href="/reg">创建账号</a>
           </div>
 
         </a-form>
+
+        <h5></h5>
       </div>
 
     </div>
@@ -49,6 +53,7 @@
 
 <script>
 import logo from '@/assets/logo.png'
+// import { mapGetters } from 'vuex'
 
 const formItemLayout = {
   labelCol: { span: 4 },
@@ -62,17 +67,17 @@ export default {
   data () {
     return {
       logo,
-      // form: {
-      //   username: 'wangjie',
-      //   password: '1'
-      // },
       formItemLayout,
       formTailLayout,
+      // form: {
+      //   username: '',
+      //   password: ''
+      // },
       form: this.$form.createForm(this, { name: 'login_form' })
     }
   },
-  mounted () {
-    console.log(process.env.VUE_APP_API_ROOT)
+  computed: {
+    // ...mapGetters(['Authorization'])
   },
   methods: {
 
@@ -89,38 +94,31 @@ export default {
         }
       })
     },
-    handleChange (e) {
-      this.checkNick = e.target.checked
-      this.$nextTick(() => {
-        this.form.validateFields(['username'], { force: true })
-      })
-    },
     handleSubmit (e) {
       e.preventDefault()
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values)
-        }
-        // this.$axios({
-        //   method: 'post',
-        //   url: '/login',
-        //   data: this.qs.stringify({ // 这里是发送给后台的数据
-        //     values
-        //   })
-        // }).then((response) => { // 这里使用了ES6的语法
-        //   console.log(response) // 请求成功返回的数据
-        // }).catch((error) => {
-        //   console.log(error) // 请求失败返回的数据
-        // })
-
-        this.$api.userMainLogin(values).then((response) => {
-          this.$notification.success({
-            message: '成功',
-            description: '登录成功'
+          this.$axios({
+            method: 'post',
+            url: '/login',
+            data: values
+          }).then((response) => { // 这里使用了ES6的语法
+            console.log(response) // 请求成功返回的数据
+            this.$store.dispatch('changeLogin', response.data.data)
+          }).catch((error) => {
+            console.log(error) // 请求失败返回的数据
           })
-          console.log(response) // 请求成功返回的数据
-        })
+        }
       })
+
+      // this.$api.userMainLogin(values).then((response) => {
+      //   this.$notification.success({
+      //     message: '成功',
+      //     description: '登录成功'
+      //   })
+      //   console.log(response) // 请求成功返回的数据
+      // })
       return false
     }
   }
