@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:06:45
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-28 20:14:41
+ * @LastEditTime: 2020-02-29 09:33:00
  */
 
 /* eslint-disable */
@@ -25,6 +25,8 @@ import {
   Icon,
   Row,
   Col,
+  Card,
+  Breadcrumb,
   Modal,
   message,
   notification
@@ -32,6 +34,8 @@ import {
 
 
 Vue.use(LocaleProvider)
+Vue.use(Breadcrumb)
+Vue.use(Card)
 Vue.use(Layout)
 Vue.use(Input)
 Vue.use(Button)

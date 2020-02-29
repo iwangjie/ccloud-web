@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-28 20:30:45
+ * @LastEditTime: 2020-02-29 09:31:52
  -->
 <template>
   <div class="layout-main">
@@ -39,7 +39,13 @@
         <!-- 头部右侧装饰 end -->
       </header>
       <div class="layout-content">
-        <router-view></router-view>
+        <div class="router-info">
+          <cBreadcrumb />
+          <h3>首页</h3>
+        </div>
+        <div class="layout-router-view-box">
+          <router-view></router-view>
+        </div>
       </div>
     </div>
   </div>
@@ -47,10 +53,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import cMenu from '@/components/Menu/index.vue'
+import cBreadcrumb from './module/breadcrumb'
 // console.log(cMenu)
 export default {
   components: {
-    cMenu
+    cMenu,
+    cBreadcrumb
   },
   computed: {
     ...mapGetters(['collapsed'])
