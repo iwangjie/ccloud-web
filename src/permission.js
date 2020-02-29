@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-29 16:36:47
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 19:32:37
+ * @LastEditTime: 2020-02-29 20:23:16
  */
 import router from './router'
 import { asyncRouterMap } from './router/router.config'
@@ -17,6 +17,12 @@ store.dispatch('GenerateRoutes')
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
+
+  // 如果通过name指向空路由时，指向404页面
+  if (to.matched.length === 0) {
+    next({ path: '/404' })
+  }
+
   next()
 })
 
