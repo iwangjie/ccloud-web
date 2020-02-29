@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-24 20:28:47
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 21:04:29
+ * @LastEditTime: 2020-02-29 21:19:59
  */
 
 export default {
@@ -28,10 +28,10 @@ export default {
         }
       }
       state.tabs.push(tab)
-      console.log(state.tabs)
     },
-    REMOVE_TAB (state, tab) {
+    REMOVE_TAB (state, name) {
       // 移除tab页
+      state.tabs = state.tabs.filter(item => item.name !== name)
     }
   },
   actions: {
@@ -43,9 +43,9 @@ export default {
       // 添加tab页
       commit('ADD_TAB', tab)
     },
-    removeTab ({ commit }, tab) {
+    removeTab ({ commit }, name) {
       // 移除tab页
-      commit('REMOVE_TAB', tab)
+      commit('REMOVE_TAB', name)
     },
     // 修改token，并将token存入localStorage
     changeLogin (state, token) { // 这里的state对应上面状态state

@@ -3,22 +3,43 @@
  * @Author: kcz
  * @Date: 2020-02-29 13:35:07
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 21:06:54
+ * @LastEditTime: 2020-02-29 21:23:54
  -->
 <template>
-  <a-tabs hideAdd v-model="activeKey" type="editable-card">
+  <a-tabs hideAdd v-model="activeKey" @edit="handleDelete" type="editable-card">
     <a-tab-pane v-for="item in tabs" :key="item.name" :tab="item.meta.title"></a-tab-pane>
   </a-tabs>
 </template>
 <script>
 export default {
   name: 'cTabs',
+  data () {
+    return {
+    }
+  },
   computed: {
     tabs () {
       return this.$store.getters.tabs
     },
-    activeKey () {
-      return this.$route.name
+    activeKey: {
+      get () {
+        return this.$route.name
+      },
+      set (name) {
+        this.$router.push({
+          name
+        })
+      }
+    }
+  },
+  methods: {
+    handleDelete (name) {
+      // 移除tab
+      // 如果移除是当前标签则后退一步历史记录
+      if (this.activeKey === name) {
+        history.back()
+      }
+      this.$store.dispatch('removeTab', name)
     }
   }
 }
