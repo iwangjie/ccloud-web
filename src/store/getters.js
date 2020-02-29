@@ -10,5 +10,5 @@ export default {
   collapsed: state => state.app.collapsed,
   routers: state => state.permission.routers,
   token: state => state.app.token,
-  tabs: state => state.app.tabs,
+  tabs: state => state.app.tabs
 }
