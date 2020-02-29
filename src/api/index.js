@@ -1,4 +1,4 @@
-import requset from '../utils/request'
+import request from '../utils/request'
 import url from './url'
 
 // 导入所有js文件
@@ -19,7 +19,7 @@ for (const k in allApiJson) {
   // 转成post方法函数
   if (allApiJson[k].method === 'post') {
     allApi[k] = (data) => {
-      return requset({
+      return request({
         url: allApiJson[k].url,
         method: allApiJson[k].method,
         // 将json 转成 key=value&key=value 以fromdata传输
@@ -36,7 +36,7 @@ for (const k in allApiJson) {
   } else {
     // 转成get方法函数
     allApi[k] = (params) => {
-      return requset({
+      return request({
         url: allApiJson[k].url,
         method: allApiJson[k].method,
         params
