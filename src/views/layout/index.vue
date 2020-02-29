@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 16:36:00
+ * @LastEditTime: 2020-02-29 21:36:25
  -->
 <template>
   <div class="layout-main">
@@ -92,7 +92,8 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$config)
+    // 默认添加第一个标签页
+    this.$store.dispatch('addTab', this.$route)
   }
 }
 </script>

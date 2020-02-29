@@ -3,10 +3,10 @@
  * @Author: kcz
  * @Date: 2020-02-29 13:35:07
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 21:23:54
+ * @LastEditTime: 2020-02-29 21:38:16
  -->
 <template>
-  <a-tabs hideAdd v-model="activeKey" @edit="handleDelete" type="editable-card">
+  <a-tabs hideAdd v-model="activeKey" @edit="handleDelete" :type="tabs.length > 1 ? 'editable-card' : 'card'">
     <a-tab-pane v-for="item in tabs" :key="item.name" :tab="item.meta.title"></a-tab-pane>
   </a-tabs>
 </template>

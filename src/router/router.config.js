@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-29 16:14:53
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 19:52:50
+ * @LastEditTime: 2020-02-29 21:29:38
  */
 
 import Layout from '../views/layout/index.vue'
@@ -46,6 +46,10 @@ export const asyncRouterMap = [
         ]
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/404'
   }
 ]
 
@@ -61,7 +65,7 @@ export const constantRouterMap = [
     component: () => import('@/views/exception/404')
   },
   {
-    path: '*',
+    path: '/',
     redirect: '/login'
   }
 ]

@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-28 20:31:55
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 09:45:05
+ * @LastEditTime: 2020-02-29 21:30:52
  -->
 <template>
   <a-card :loading="loading">
@@ -30,6 +30,9 @@ export default {
     return {
       loading: true
     }
+  },
+  mounted () {
+    console.log(234)
   }
 }
 </script>
