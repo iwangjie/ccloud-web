@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:15:27
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-24 21:04:40
+ * @LastEditTime: 2020-02-29 19:50:52
  -->
 <template>
   <div class="menu-main" :class="{'collapsed':collapsed}">
@@ -21,12 +21,12 @@
       theme="dark"
       :inlineCollapsed="collapsed"
     >
-          <template v-for="item in list">
-        <a-menu-item v-if="!item.children" :key="item.key">
-          <a-icon type="pie-chart" />
-          <span>{{item.title}}</span>
+          <template v-for="item in routers">
+        <a-menu-item v-if="!item.children" :key="item.name">
+          <a-icon :type="item.meta.icon" />
+          <span>{{item.meta.title}}</span>
         </a-menu-item>
-        <cSubMenu v-else :menu-info="item" :key="item.key" />
+        <cSubMenu v-else :menu-info="item" :key="item.name" />
       </template>
     </a-menu>
   </div>
@@ -64,13 +64,13 @@ export default {
     cSubMenu
   },
   computed: {
-    ...mapGetters(['collapsed'])
+    ...mapGetters(['collapsed', 'routers'])
   },
   methods: {
 
   },
   mounted () {
-    console.log(this.collapsed)
+    console.log(this.routers, 1231)
   }
 }
 </script>

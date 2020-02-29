@@ -3,10 +3,11 @@
  * @Author: kcz
  * @Date: 2020-02-29 16:14:53
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 16:54:41
+ * @LastEditTime: 2020-02-29 19:52:50
  */
 
 import Layout from '../views/layout/index.vue'
+import RouterView from '../views/layout/RouterView.vue'
 
 // 异步加载路由配置
 export const asyncRouterMap = [
@@ -16,22 +17,33 @@ export const asyncRouterMap = [
     component: Layout,
     children: [
       {
-        path: 'home',
-        name: 'home',
-        meta: {
-          title: '首页',
-          icon: 'jkjk'
-        },
-        component: () => import('@/views/home/index')
-      },
-      {
         path: 'dashboard',
         name: 'dashboard',
         meta: {
-          title: '仪表盘',
-          icon: 'jkjk'
+          title: '首页',
+          icon: 'pie-chart'
         },
         component: () => import('@/views/dashboard/index')
+      },
+      {
+        path: 'test',
+        name: 'test1',
+        meta: {
+          title: '测试1',
+          icon: 'file-text'
+        },
+        component: RouterView,
+        children: [
+          {
+            path: 'home',
+            name: 'test2',
+            meta: {
+              title: '测试22',
+              icon: 'file-text'
+            },
+            component: () => import('@/views/home/index')
+          }
+        ]
       }
     ]
   }
