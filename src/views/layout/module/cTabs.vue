@@ -3,12 +3,11 @@
  * @Author: kcz
  * @Date: 2020-02-29 13:35:07
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 13:37:03
+ * @LastEditTime: 2020-02-29 13:50:44
  -->
 <template>
-        <a-tabs v-model="activeKey" type="editable-card">
-    <a-tab-pane  tab="pane.title" :key="22">
-    </a-tab-pane>
+  <a-tabs hideAdd v-model="activeKey" type="editable-card">
+    <a-tab-pane tab="pane.title" :key="22"></a-tab-pane>
   </a-tabs>
 </template>
 <script>

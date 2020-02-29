@@ -10,6 +10,7 @@
   "dependencies": {
     "ant-design-vue": "^1.4.11",
     "core-js": "^3.6.4",
+    "nprogress": "^0.2.0",
     "qs": "^6.9.1",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",

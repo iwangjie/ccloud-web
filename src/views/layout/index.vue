@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 13:44:00
+ * @LastEditTime: 2020-02-29 16:36:00
  -->
 <template>
   <div class="layout-main">
@@ -23,16 +23,17 @@
           <a-dropdown :trigger="['click']">
             <a class="avatar" href="#">
               <div>
+                <!-- 头像 -->
                 <img src="http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg" alt />
                 <!-- <a-icon type="down" /> -->
               </div>
             </a>
             <a-menu slot="overlay">
               <a-menu-item key="0">
-                <a href="http://www.alipay.com/">个人中心</a>
+                <a href="">个人中心</a>
               </a-menu-item>
               <a-menu-item key="1">
-                <a href="http://www.taobao.com/">修改密码</a>
+                <a href="">修改密码</a>
               </a-menu-item>
               <a-menu-divider />
               <a-menu-item key="3">退出</a-menu-item>
@@ -42,7 +43,7 @@
         <!-- 头部右侧装饰 end -->
       </header>
       <!-- 多标签组件 start -->
-      <cTabs />
+      <cTabs v-if="$config.multiTab" />
       <!-- 多标签组件 end -->
       <div class="layout-content">
         <div class="router-info">
@@ -89,6 +90,9 @@ export default {
     toggleCollapsed () {
       this.$store.dispatch('toggleCollapsed')
     }
+  },
+  mounted () {
+    console.log(this.$config)
   }
 }
 </script>
