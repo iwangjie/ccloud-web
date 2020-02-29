@@ -9,10 +9,13 @@
 export default {
   state: {
     collapsed: false,
-    tabs: [],
-    Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : ''
+    token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
+    tabs: []
   },
   mutations: {
+    SET_TOKEN (state, token) {
+      state.token = token
+    },
     SET_COLLAPSED (state) {
       // 切换菜单收缩状态
       state.collapsed = !state.collapsed
@@ -48,13 +51,13 @@ export default {
       commit('REMOVE_TAB', name)
     },
     // 修改token，并将token存入localStorage
-    changeLogin (state, token) { // 这里的state对应上面状态state
-      state.Authorization = token
-      localStorage.setItem('Authorization', token)
+    changeLogin ({ commit }, token) {
+      commit('SET_TOKEN', token)
+      localStorage.setItem('token', token)
     },
-    clearLogin (state) { // 这里的state对应上面状态state
+    clearLogin ({ commit }) {
+      commit('SET_TOKEN', '')
       localStorage.token = ''
-      state.Authorization = ''
     }
 
   }
