@@ -22,7 +22,7 @@
           </a-form-item>
           <a-form-item>
             <label>密码：</label>
-            <a-input
+            <a-input-password
               v-decorator="['password', { rules: [{ required: true, message: '请填写密码' }] }]"
               name="password"
               type="password"/>
@@ -106,6 +106,7 @@ export default {
           }).then((response) => { // 这里使用了ES6的语法
             console.log(response) // 请求成功返回的数据
             this.$store.dispatch('changeLogin', response.data.data)
+            this.$router.push('/')
           }).catch((error) => {
             console.log(error) // 请求失败返回的数据
           })
