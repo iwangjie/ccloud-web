@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './core/'
-
 import './styles/index.less'
+import './permission'
 Vue.config.productionTip = false
 new Vue({
   router,

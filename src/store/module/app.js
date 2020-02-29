@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-24 20:28:47
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-24 20:38:08
+ * @LastEditTime: 2020-02-29 15:25:17
  */
 
 export default {
@@ -17,8 +17,9 @@ export default {
   },
   actions: {
     toggleCollapsed ({ commit }) {
-      // 切换Collapsed
+      // 切换Collapsed，是否收缩菜单
       commit('SET_COLLAPSED')
     }
+
   }
 }
