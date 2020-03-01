@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-03-01 14:39:24
+ * @LastEditTime: 2020-03-01 18:34:52
  -->
 <template>
   <div class="layout-main">
@@ -20,23 +20,34 @@
         <!-- 头部左侧切换菜单按钮 end -->
         <!-- 头部右侧装饰 start -->
         <div class="decorate">
-          <a-dropdown :trigger="['click']">
-            <a class="avatar" href="#">
-              <div>
+          <div class="decorate-btn-box">
+            <span>
+              <a-icon type="github" />
+            </span>
+            <span>
+              <a-icon type="fullscreen" />
+            </span>
+          </div>
+          <a-dropdown class="dropdown">
+            <div class="decorate-avatar-box">
+              <div class="avatar">
                 <!-- 头像 -->
                 <img src="http://cdn.kcz66.com/%E5%A4%B4%E5%83%8F.jpg" alt />
-                <!-- <a-icon type="down" /> -->
               </div>
-            </a>
+              <span>呆萌小妹</span>
+            </div>
+
             <a-menu slot="overlay">
               <a-menu-item key="0">
-                <a href="">个人中心</a>
+                  <a-icon type="user" />个人中心
               </a-menu-item>
               <a-menu-item key="1">
-                <a href="">修改密码</a>
+                  <a-icon type="setting" />修改密码
               </a-menu-item>
               <a-menu-divider />
-              <a-menu-item key="3">退出</a-menu-item>
+              <a-menu-item key="3">
+                <a-icon type="logout" />退出
+              </a-menu-item>
             </a-menu>
           </a-dropdown>
         </div>
@@ -52,11 +63,11 @@
           <!-- 面包屑组件 end -->
           <h3>{{$route.meta.title}}</h3>
         </div>
-      <!-- 内容主体区域 start -->
+        <!-- 内容主体区域 start -->
         <div class="layout-router-view-box">
           <router-view></router-view>
         </div>
-      <!-- 内容主体区域 end -->
+        <!-- 内容主体区域 end -->
       </div>
 
       <!-- 页脚 start -->

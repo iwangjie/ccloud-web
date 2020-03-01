@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-29 16:36:47
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 21:35:29
+ * @LastEditTime: 2020-03-01 14:54:22
  */
 import router from './router'
 import { asyncRouterMap } from './router/router.config'
