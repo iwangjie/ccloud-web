@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-03-01 18:34:52
+ * @LastEditTime: 2020-03-01 18:52:49
  -->
 <template>
   <div class="layout-main">
@@ -28,7 +28,7 @@
               <a-icon type="fullscreen" />
             </span>
           </div>
-          <a-dropdown class="dropdown">
+          <a-dropdown overlayClassName="avatar-dropdown">
             <div class="decorate-avatar-box">
               <div class="avatar">
                 <!-- 头像 -->
