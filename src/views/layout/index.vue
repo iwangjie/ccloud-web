@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-23 21:12:19
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 21:36:25
+ * @LastEditTime: 2020-03-01 14:39:24
  -->
 <template>
   <div class="layout-main">
@@ -46,11 +46,11 @@
       <cTabs v-if="$config.multiTab" />
       <!-- 多标签组件 end -->
       <div class="layout-content">
-        <div class="router-info">
+        <div class="router-info" v-if="$config.showBreadcrumb && !$route.meta.hideBreadcrumb">
           <!-- 面包屑组件 start -->
           <cBreadcrumb />
           <!-- 面包屑组件 end -->
-          <h3>首页</h3>
+          <h3>{{$route.meta.title}}</h3>
         </div>
       <!-- 内容主体区域 start -->
         <div class="layout-router-view-box">

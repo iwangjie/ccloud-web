@@ -3,7 +3,7 @@
  * @Author: kcz
  * @Date: 2020-02-29 16:14:53
  * @LastEditors: kcz
- * @LastEditTime: 2020-02-29 21:29:38
+ * @LastEditTime: 2020-03-01 14:40:21
  */
 
 import Layout from '../views/layout/index.vue'
@@ -15,13 +15,15 @@ export const asyncRouterMap = [
     path: '/',
     name: 'index',
     component: Layout,
+    redirect: '/dashboard',
     children: [
       {
         path: 'dashboard',
         name: 'dashboard',
         meta: {
           title: '首页',
-          icon: 'pie-chart'
+          icon: 'pie-chart',
+          hideBreadcrumb: true // 隐藏当前页面的面包屑
         },
         component: () => import('@/views/dashboard/index')
       },
@@ -63,9 +65,9 @@ export const constantRouterMap = [
   {
     path: '/404',
     component: () => import('@/views/exception/404')
-  },
-  {
-    path: '/',
-    redirect: '/login'
   }
+  // {
+  //   path: '/',
+  //   redirect: '/login'
+  // }
 ]

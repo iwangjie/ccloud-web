@@ -166,15 +166,17 @@ export default {
         }
       })
 
-      // this.$api.userMainLogin(values).then((response) => {
-      //   this.$notification.success({
-      //     message: '成功',
-      //     description: '登录成功'
-      //   })
-      //   console.log(response) // 请求成功返回的数据
-      // })
       return false
     }
+  },
+  mounted () {
+    this.$api.aaa().then((response) => {
+      this.$notification.success({
+        message: '成功',
+        description: 'aaa接口请求成功'
+      })
+      console.log(response) // 请求成功返回的数据
+    })
   }
 }
 </script>
