@@ -159,8 +159,14 @@ export default {
             data: values
           }).then((response) => { // 这里使用了ES6的语法
             console.log(response) // 请求成功返回的数据
-            this.$store.dispatch('changeLogin', response.data.data)
-            this.$router.push('/')
+            this.$store.dispatch('changeLogin', response.data.data).then(() => {
+              this.$router.push('/')
+            }).catch(() => {
+              alert('登录错误')
+            })
+            // 已登录用户路由配置
+            // this.$router.addRoutes(asyncRouterMap)
+            // this.$store.dispatch('GenerateRoutes')
           }).catch((error) => {
             console.log(error) // 请求失败返回的数据
           })

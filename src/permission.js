@@ -6,30 +6,35 @@
  * @LastEditTime: 2020-03-01 14:54:22
  */
 import router from './router'
-import { constantRouterMap } from './router/router.config'
+import { asyncRouterMap, constantRouterMap } from './router/router.config'
 import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 
 router.addRoutes(constantRouterMap)
 
+let registerRouteFresh = true
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
-
-  // 如果通过name指向空路由时，指向404页面
-  if (to.matched.length === 0) {
-    next({ path: '/404' })
-  }
-
-  console.log(store.getters.token)
-  console.log(to.name)
-  console.log(router)
-  if (sessionStorage.getItem('token') === null && (to.meta.auth || to.meta.auth === undefined)) {
-    next({
-      path: '/login'
-    })
+  // 读取本地路由
+  if (registerRouteFresh) {
+    router.addRoutes(asyncRouterMap)
+    store.dispatch('GenerateRoutes')
+    registerRouteFresh = false
+    // 跳转首页
+    next(to)
   } else {
-    next()
+    // 如果通过name指向空路由时，指向404页面
+    if (to.matched.length === 0) {
+      next({ path: '/404' })
+    }
+    if (sessionStorage.getItem('token') === null && (to.meta.auth || to.meta.auth === undefined)) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
   }
 })
 

@@ -28,19 +28,19 @@ export const asyncRouterMap = [
         component: () => import('@/views/dashboard/index')
       },
       {
-        path: 'test',
-        name: 'test1',
+        path: '/announcement',
+        name: 'Announcement',
         meta: {
-          title: '测试1',
+          title: '公告管理',
           icon: 'file-text'
         },
         component: RouterView,
         children: [
           {
-            path: 'home',
+            path: '/announcementList',
             name: 'test2',
             meta: {
-              title: '测试22',
+              title: '公告列表',
               icon: 'file-text'
             },
             component: () => import('@/views/home/index')

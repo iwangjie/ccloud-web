@@ -7,8 +7,7 @@
  */
 
 import router from '@/router'
-import { asyncRouterMap } from '@/router/router.config'
-import store from '@/store'
+import { constantRouterMap } from '@/router/router.config'
 
 export default {
   state: {
@@ -60,16 +59,13 @@ export default {
       sessionStorage.setItem('token', token)
 
       // 已登录用户路由配置
-      router.addRoutes(asyncRouterMap)
-      store.dispatch('GenerateRoutes')
+      // sessionStorage.setItem('navMenuData', JSON.stringify(asyncRouterMap))
     },
     clearLogin ({ commit }) {
       commit('SET_TOKEN', null)
       sessionStorage.removeItem('token')
       // 未登录路由配置
-
-      // router.addRoutes(constantRouterMap)
-      // store.dispatch('GenerateRoutes')
+      sessionStorage.setItem('navMenuData', constantRouterMap)
       router.push({ path: '/login' })
     }
 
