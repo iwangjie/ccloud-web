@@ -38,7 +38,7 @@ export const asyncRouterMap = [
         children: [
           {
             path: '/announcementList',
-            name: 'test2',
+            name: 'announcementList',
             meta: {
               title: '公告列表',
               icon: 'file-text'

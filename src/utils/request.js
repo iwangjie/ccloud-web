@@ -9,7 +9,7 @@ const service = axios.create({
   baseURL: baseUrl,
   // timeout: 5000, // 请求超时时间
   timeout: 9999999, // 请求超时时间
-  withCredentials: true,
+  withCredentials: false, // 额这项不能为true，不然不能携带跨域头
   crossDomain: true
 })
 // request拦截器
@@ -19,6 +19,10 @@ service.interceptors.request.use(
     // config.headers['token'] = store.getters.token // 让每个请求携带自定义token 请根据实际情况自行修改
     // }
     config.headers['Content-Type'] = 'application/json'
+    if (sessionStorage.getItem('token')) {
+      config.headers['CC-Authorization'] = sessionStorage.getItem('token')
+    }
+    console.log(store.getters.token)
     return config
   },
   error => {
@@ -59,6 +63,11 @@ service.interceptors.response.use(
           onCancel () {
             console.log('Cancel')
           }
+        })
+      } else {
+        Modal.error({
+          title: '系统错误',
+          content: '系统出错了。。。。'
         })
       }
       // const error = 'error'

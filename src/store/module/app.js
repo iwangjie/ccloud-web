@@ -13,11 +13,15 @@ export default {
   state: {
     collapsed: false,
     token: sessionStorage.getItem('token') ? sessionStorage.getItem('token') : '',
+    userInfo: sessionStorage.getItem('userInfo') ? sessionStorage.getItem('userInfo') : '',
     tabs: []
   },
   mutations: {
     SET_TOKEN (state, token) {
       state.token = token
+    },
+    SET_USER_INFO (state, userInfo) {
+      state.userInfo = userInfo
     },
     SET_COLLAPSED (state) {
       // 切换菜单收缩状态
@@ -52,6 +56,10 @@ export default {
     removeTab ({ commit }, name) {
       // 移除tab页
       commit('REMOVE_TAB', name)
+    },
+    setUserInfo ({ commit }, userInfo) {
+      commit('SET_USER_INFO', userInfo)
+      sessionStorage.setItem('userInfo', userInfo)
     },
     // 修改token，并将token存入localStorage
     changeLogin ({ commit }, token) {

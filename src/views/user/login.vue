@@ -100,6 +100,7 @@
 
 <script>
 import logo from '@/assets/logo.png'
+import { login } from '@/api/user'
 // import { mapGetters } from 'vuex'
 
 const formItemLayout = {
@@ -153,20 +154,12 @@ export default {
       this.loginForm.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values)
-          this.$axios({
-            method: 'post',
-            url: '/login',
-            data: values
-          }).then((response) => { // 这里使用了ES6的语法
-            console.log(response) // 请求成功返回的数据
-            this.$store.dispatch('changeLogin', response.data.data).then(() => {
+          login(values).then((response) => {
+            this.$store.dispatch('changeLogin', response.data).then(() => {
               this.$router.push('/')
             }).catch(() => {
-              alert('登录错误')
+              alert('出错了')
             })
-            // 已登录用户路由配置
-            // this.$router.addRoutes(asyncRouterMap)
-            // this.$store.dispatch('GenerateRoutes')
           }).catch((error) => {
             console.log(error) // 请求失败返回的数据
           })

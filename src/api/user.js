@@ -7,3 +7,11 @@ export function login (data) {
     data
   })
 }
+
+export function getUserInfo (data) {
+  return request({
+    url: '/currUser',
+    method: 'post',
+    data
+  })
+}
