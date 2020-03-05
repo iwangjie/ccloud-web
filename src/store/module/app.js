@@ -59,13 +59,18 @@ export default {
       commit('SET_TOKEN', token)
       sessionStorage.setItem('token', token)
 
-      // 登录用户路由配置
+      // 已登录用户路由配置
       router.addRoutes(asyncRouterMap)
       store.dispatch('GenerateRoutes')
     },
     clearLogin ({ commit }) {
-      commit('SET_TOKEN', '')
-      sessionStorage.token = ''
+      commit('SET_TOKEN', null)
+      sessionStorage.removeItem('token')
+      // 未登录路由配置
+
+      // router.addRoutes(constantRouterMap)
+      // store.dispatch('GenerateRoutes')
+      router.push({ path: '/login' })
     }
 
   }
