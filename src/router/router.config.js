@@ -60,6 +60,9 @@ export const constantRouterMap = [
   {
     path: '/login',
     name: 'Login',
+    meta: {
+      auth: false
+    },
     component: () => import('@/views/user/login')
   },
   {

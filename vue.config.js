@@ -5,7 +5,7 @@
  * 2、yarn serve --port 8080
  * @type {string | number}
  */
-const port = process.env.port || process.env.npm_config_port || 8080 // dev port
+const port = process.env.port || process.env.npm_config_port || 8081 // dev port
 // 页面标题
 const title = 'C-Cloud Web Ant'
 

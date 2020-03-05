@@ -6,14 +6,12 @@
  * @LastEditTime: 2020-03-01 14:54:22
  */
 import router from './router'
-import { asyncRouterMap } from './router/router.config'
+import { constantRouterMap } from './router/router.config'
 import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 
-// 异步路由暂时写在这里吧,等有了登录，在登录在加载
-router.addRoutes(asyncRouterMap)
-store.dispatch('GenerateRoutes')
+router.addRoutes(constantRouterMap)
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
@@ -23,7 +21,16 @@ router.beforeEach((to, from, next) => {
     next({ path: '/404' })
   }
 
-  next()
+  console.log(store.getters.token)
+  console.log(to.name)
+  console.log(router)
+  if (sessionStorage.getItem('token') === null && (to.meta.auth || to.meta.auth === undefined)) {
+    next({
+      path: '/login'
+    })
+  } else {
+    next()
+  }
 })
 
 router.afterEach(() => {

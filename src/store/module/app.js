@@ -6,10 +6,14 @@
  * @LastEditTime: 2020-02-29 21:19:59
  */
 
+import router from '@/router'
+import { asyncRouterMap } from '@/router/router.config'
+import store from '@/store'
+
 export default {
   state: {
     collapsed: false,
-    token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
+    token: sessionStorage.getItem('token') ? sessionStorage.getItem('token') : '',
     tabs: []
   },
   mutations: {
@@ -53,11 +57,15 @@ export default {
     // 修改token，并将token存入localStorage
     changeLogin ({ commit }, token) {
       commit('SET_TOKEN', token)
-      localStorage.setItem('token', token)
+      sessionStorage.setItem('token', token)
+
+      // 登录用户路由配置
+      router.addRoutes(asyncRouterMap)
+      store.dispatch('GenerateRoutes')
     },
     clearLogin ({ commit }) {
       commit('SET_TOKEN', '')
-      localStorage.token = ''
+      sessionStorage.token = ''
     }
 
   }
