@@ -11,6 +11,11 @@ export default {
   getAnnouncementList: {
     url: '/notice/page',
     method: 'post'
+  },
+
+  saveAnnouncement: {
+    url: '/notice/save',
+    method: 'post'
   }
 
 }

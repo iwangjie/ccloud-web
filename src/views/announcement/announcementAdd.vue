@@ -9,46 +9,16 @@
 
   <div>
     <a-card>
-      <a-form layout="inline" :form="form" @submit="handleSubmit">
-        <a-form-item class="form_item">
-          <label>选择应用</label>
 
-          <a-select
-            v-decorator="['appId', { rules: [{ required: true, message: '请选择应用' }] }]"
-            name="appId"
-            labelInValue
-            style="width: 120px"
-            @change="handleChange">
-
-            <a-select-option v-for="item in appIds" v-bind:key="item.id" :value="item.id">{{item.appName}}</a-select-option>
-          </a-select>
-        </a-form-item>
-
-        <a-form-item class="form_item">
-          <label>选择日期</label>
-          <a-range-picker @change="dateOnChange"/>
-        </a-form-item>
-
-        <a-form-item class="form_item">
-          <a-button type="primary" html-type="submit" ref="submit">
-            查询
-          </a-button>
-        </a-form-item>
-
-      </a-form>
-    </a-card>
-
-    <a-card style="margin-top: 10px" :loading="loading">
-      <a-list class="data_list" :grid="{ gutter: 16, column: 4 }" :dataSource="data">
-        <a-list-item slot="renderItem" slot-scope="item, index">
-          <a-card :title="item.noticeTitle"><span v-html="item.noticeInfo">{{index}}</span></a-card>
-        </a-list-item>
-
-        <a-pagination @change="pageChange" style="float: right" size="small" :total="page.total" :current="page.current"
-                      :pageSize="page.size"
-                      :showTotal="total => `Total ${total} items`"/>
-      </a-list>
-
+      <a-button type="primary" @click="showModal">
+        点按发布公告
+      </a-button>
+      <collection-create-form
+        ref="collectionForm"
+        :visible="visible"
+        @cancel="handleCancel"
+        @create="handleCreate"
+      />
     </a-card>
   </div>
 
@@ -57,8 +27,81 @@
 <script>
 
 const data = []
+
+const CollectionCreateForm = {
+  props: ['visible'],
+  beforeCreate () {
+    this.form = this.$form.createForm(this, { name: 'form_in_modal' })
+  },
+  data () {
+    return {
+      appIdList: []
+    }
+  },
+  mounted () {
+    this.$api.getAppIds().then(resp => {
+      if (resp.data) {
+        this.appIdList = resp.data
+      }
+    }).catch(e => {
+    })
+  },
+  template: `
+    <a-modal
+      :visible="visible"
+      title='发布一条新公告'
+      okText='发布'
+      cancelText="取消"
+      @cancel="() => { $emit('cancel') }"
+      @ok="() => { $emit('create') }"
+    >
+      <a-form layout='vertical' :form="form">
+          <a-form-item label="选择应用">
+            <a-select
+            v-decorator="['appId', { rules: [{ required: true, message: '请选择应用' }] }]"
+            name="appId"
+
+            style="width: 120px"
+            @change="()=> $emit('handleChange')">
+            <a-select-option v-for="item in appIdList" v-bind:key="item.id" :value="item.id">{{item.appName}}</a-select-option>
+            </a-select>
+        </a-form-item>
+        <a-form-item label='公告标题'>
+          <a-input
+            v-decorator="[
+              'noticeTitle',
+              {
+                rules: [{ required: true, message: '请输入公告标题!' }],
+              }
+            ]"
+          />
+        </a-form-item>
+        <a-form-item label='公告内容(支持富文本)'>
+          <a-input
+            type='textarea'
+            v-decorator="['noticeInfo']"
+          />
+        </a-form-item>
+        <a-form-item class='collection-create-form_last-form-item'>
+          <a-radio-group
+            v-decorator="[
+              'status',
+              {
+                initialValue: '0',
+              }
+            ]"
+          >
+              <a-radio value='0'>生效</a-radio>
+              <a-radio value='1'>不生效</a-radio>
+            </a-radio-group>
+        </a-form-item>
+      </a-form>
+    </a-modal>
+  `
+}
 export default {
   name: 'home',
+  components: { CollectionCreateForm },
   data () {
     return {
       data,
@@ -70,60 +113,45 @@ export default {
         pageNum: 1,
         pageSize: 12
       },
-      page: {},
-      form: this.$form.createForm(this, { name: 'param_form' }),
-      loading: false
+      visible: false
 
     }
   },
   mounted () {
-    this.$api.getAppIds().then(resp => {
-      if (resp.data) {
-        this.appIds = resp.data
-      }
-    }).catch(e => {
 
-    })
   },
   methods: {
-    handleSubmit (e) {
-      e.preventDefault()
-      const self = this
-      this.data = []
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          this.loading = true
-          console.log(values)
-          this.$api.getAnnouncementList(this.formData).then((resp) => {
-            console.log(resp)
-            const respData = resp.data
-            if (respData) {
-              const { records, ...pageData } = respData
-              self.page = pageData
-              self.data = records
-            }
+    initAppIds () {
 
-            this.loading = false
-          }).catch((e) => {
-            console.log(e)
-          })
-        }
-      })
     },
     handleChange: function (value) {
       this.formData.appId = value.key
       console.log(value)
     },
-    dateOnChange (date, dateString) {
-      console.log(date, dateString)
-      this.formData.startDate = dateString[0]
-      this.formData.endDate = dateString[1]
+    showModal () {
+      this.visible = true
+      this.initAppIds()
     },
-    pageChange (pageNum, pageSize) {
-      this.formData.pageNum = pageNum
-      this.formData.pageSize = pageSize
-      // 执行查询
-      this.$refs.submit.$el.click()
+    handleCancel () {
+      this.visible = false
+    },
+    handleCreate () {
+      const form = this.$refs.collectionForm.form
+      form.validateFields((err, values) => {
+        if (err) {
+          return
+        }
+        console.log('Received values of form: ', values)
+        // 发布
+        this.$api.saveAnnouncement(values).then(() => {
+          alert('发布成功')
+        }).catch((e) => {
+
+        })
+
+        form.resetFields()
+        this.visible = false
+      })
     }
   }
 }

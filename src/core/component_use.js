@@ -34,7 +34,8 @@ import {
   notification,
   DatePicker,
   List,
-  Pagination
+  Pagination,
+  Radio
 } from 'ant-design-vue'
 
 
@@ -56,6 +57,7 @@ Vue.use(Select)
 Vue.use(DatePicker)
 Vue.use(List)
 Vue.use(Pagination)
+Vue.use(Radio)
 
 Vue.use(notification)
 
