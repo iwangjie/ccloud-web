@@ -43,7 +43,16 @@ export const asyncRouterMap = [
               title: '公告列表',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/announcement/announcementList')
+          },
+          {
+            path: '/announcementAdd',
+            name: 'announcementAdd',
+            meta: {
+              title: '发布公告',
+              icon: 'file-text'
+            },
+            component: () => import('@/views/announcement/announcementAdd')
           }
         ]
       },
@@ -201,7 +210,7 @@ export const asyncRouterMap = [
       },
       {
         path: '/system',
-        name: 'Analysis',
+        name: 'system',
         meta: {
           title: '系统设置',
           icon: 'file-text'
@@ -210,7 +219,7 @@ export const asyncRouterMap = [
         children: [
           {
             path: '/UserConfig',
-            name: 'userAnalysis',
+            name: 'userConfig',
             meta: {
               title: '个性化设置',
               icon: 'file-text'

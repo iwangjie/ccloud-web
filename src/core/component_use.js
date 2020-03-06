@@ -29,8 +29,12 @@ import {
   Breadcrumb,
   Modal,
   Tabs,
+  Select,
   message,
-  notification
+  notification,
+  DatePicker,
+  List,
+  Pagination
 } from 'ant-design-vue'
 
 
@@ -48,6 +52,10 @@ Vue.use(Icon)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Modal)
+Vue.use(Select)
+Vue.use(DatePicker)
+Vue.use(List)
+Vue.use(Pagination)
 
 Vue.use(notification)
 
