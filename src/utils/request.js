@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { message, Modal } from 'ant-design-vue'
+import { Modal } from 'ant-design-vue'
 import store from '../store'
 import baseUrl from './baseUrl'
 // import {getToken} from './auth'
@@ -41,10 +41,10 @@ service.interceptors.response.use(
     const res = response.data
     if (res.code !== 0) {
       console.log(res)
-      res.message !== '未登录' && message.error(res.message, 5)
+      // res.message !== '未登录' && message.error(res.message, 5)
 
       // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
-      if (res.code === 50008 || res.code === 50012 || res.code === 'E10010') {
+      if (res.code === 401 || res.code === 50012 || res.code === 'E10010') {
         // 防止多次弹出登录信息失效框
         if (aTime !== null && (new Date().getTime() - aTime) < 2000) {
           return false
@@ -56,7 +56,7 @@ service.interceptors.response.use(
           okText: '重新登录',
           cancelText: '取消',
           onOk () {
-            store.dispatch('FedLogOut').then(() => {
+            store.dispatch('clearLogin').then(() => {
               location.reload() // 为了重新实例化vue-router对象 避免bug
             })
           },

@@ -11,9 +11,11 @@ import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // progress bar style
 
-import { getUserInfo } from '@/api/user'
+// import { getUserInfo } from '@/api/user'
 
 router.addRoutes(constantRouterMap)
+
+// const whiteList = ['/login']
 
 let registerRouteFresh = true
 router.beforeEach((to, from, next) => {
@@ -21,10 +23,10 @@ router.beforeEach((to, from, next) => {
   // 读取本地路由
   if (registerRouteFresh) {
     // 获取当前用户
-    getUserInfo().then((resp) => {
-      // let resp = JSON.stringify(resp)
-      // store.dispatch("")
-    })
+    // getUserInfo().then((resp) => {
+    // let resp = JSON.stringify(resp)
+    // store.dispatch("")
+    // })
     router.addRoutes(asyncRouterMap)
     store.dispatch('GenerateRoutes')
     registerRouteFresh = false

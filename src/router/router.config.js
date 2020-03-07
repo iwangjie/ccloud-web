@@ -66,21 +66,21 @@ export const asyncRouterMap = [
         component: RouterView,
         children: [
           {
-            path: '/makeRegistrationCode',
-            name: 'test2',
+            path: '/registrationCodeAdd',
+            name: 'registrationCodeAdd',
             meta: {
               title: '生成注册码',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/registrationCode/registrationCodeAdd')
           }, {
             path: '/registrationCodeList',
-            name: 'test2',
+            name: 'registrationCodeList',
             meta: {
               title: '注册码列表',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/registrationCode/registrationCodeList')
           }
         ]
       },
