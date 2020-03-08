@@ -178,13 +178,13 @@ export const asyncRouterMap = [
         component: RouterView,
         children: [
           {
-            path: '/feedbackList',
-            name: 'feedbackList',
+            path: '/feedback',
+            name: 'feedback',
             meta: {
               title: '留言反馈列表',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/feedback/feedbackList')
           }
         ]
       },
