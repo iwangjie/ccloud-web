@@ -95,20 +95,20 @@ export const asyncRouterMap = [
         children: [
           {
             path: '/addVersion',
-            name: 'test2',
+            name: 'addVersion',
             meta: {
               title: '发布版本',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/updateVersion/addVersion')
           }, {
             path: '/versionList',
-            name: 'test2',
+            name: 'versionList',
             meta: {
               title: '版本列表',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/updateVersion/versionList')
           }
         ]
       },
