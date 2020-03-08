@@ -27,6 +27,36 @@ export const asyncRouterMap = [
         },
         component: () => import('@/views/dashboard/index')
       },
+
+      {
+        path: '/app',
+        name: 'App',
+        meta: {
+          title: '应用管理',
+          icon: 'file-text'
+        },
+        component: RouterView,
+        children: [
+          {
+            path: '/appAdd',
+            name: 'appAdd',
+            meta: {
+              title: '新增应用',
+              icon: 'file-text'
+            },
+            component: () => import('@/views/app/appAdd')
+          },
+          {
+            path: '/appList',
+            name: 'appList',
+            meta: {
+              title: '应用管理',
+              icon: 'file-text'
+            },
+            component: () => import('@/views/app/appList')
+          }
+        ]
+      },
       {
         path: '/announcement',
         name: 'Announcement',
