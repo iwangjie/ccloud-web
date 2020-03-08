@@ -1,22 +1,28 @@
-# ccloud-web
-C-CLOUD 前端项目 
+# ccloud-web-ant
 
-### vue 2.6.11
-### vue-cli 4.2.0
+## 安装依赖
+```
+yarn install
+```
 
-## 构建vue项目
-安装node
-安装npm
-安装yarn
-全局安装vue-cli
+### 启动服务
+```
+yarn serve
+```
 
-yarn global add @vue/cli
+### 打包部署
+```
+yarn build
+```
 
-vue init webpack ccloud-web
-
-vue create ccloud-web
-
-### 安装饿了么UI
-`npm i element-ui -S`
- 
-
+### src文件下目录结构
+```
+├─assets // 资源
+├─components // 组件
+│  └─Menu //菜单
+├─core // 核心及组件按需加载配置
+├─router // 路由配置
+├─store // vuex配置
+└─views // 页面
+    └─layout // 布局页
+``` 
