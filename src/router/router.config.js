@@ -156,7 +156,7 @@ export const asyncRouterMap = [
               title: '接口访问日志',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/logAdmin/accessLog')
           }, {
             path: '/activationLog',
             name: 'activationLog',
@@ -164,7 +164,7 @@ export const asyncRouterMap = [
               title: '注册码激活日志',
               icon: 'file-text'
             },
-            component: () => import('@/views/home/index')
+            component: () => import('@/views/logAdmin/activationLog')
           }
         ]
       },
